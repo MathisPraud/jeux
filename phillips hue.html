@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <title>Philips hue</title>
+    <link rel="stylesheet" href="stylehue.css">
+
+
+    <script>
+        const connexionPont = async(e) => {
+            const idLamp = document.getElementById('idLamp').value
+            const color = document.getElementById('color').value
+            const onState = document.getElementById('on').checked
+            const sat = document.getElementById('sat').value
+            const bri = document.getElementById('bri').value
+
+            e.preventDefault()
+            const reponse = await fetch('https://192.168.1.10/api/ZXq6hSwPua7yDBNGpcO1dUGQb0lo0OalcvXF39xf/lights/' + idLamp + '/state', {
+                method: "PUT",
+                body: JSON.stringify({
+                    "on": onState,
+                    "hue": parseInt(color),
+                    "sat": parseInt(sat),
+                    "bri": parseInt(bri)
+                })
+            })
+            const json = await reponse.json()
+            console.log(json)
+        }
+    </script>
+</head>
+
+<body background="image/370183.jpg">
+
+    <form onsubmit="connexionPont(event)">
+        <div class="gd">
+            <div class="gauche">
+                <div>
+                    <label for="idamp">ID lamp:</label>
+
+                    <select name="ID lamp" id="idLamp">
+                        <option value="choisir une lampe">choisir une lampe</option>
+                        <option value="6">lampe 6</option>
+                        <option value="7">lampe 7</option>
+                        <option value="8">lampe 8</option>
+                        <option value="9">lampe 9</option>
+                        <option value="10">lampe 10</option>
+                        <option value="11">lampe 11</option>
+                        <option value="12">lampe 12</option>
+                        <option value="13">lampe 13</option>
+                        <option value="14">lampe 14</option>
+                        <option value="15">lampe 15</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="couleur">couleurs :</label>
+                    <input type="number" id="color" min="0" max="65535" value="32000">
+                </div>
+            </div>
+            <div class="droite">
+                <div>
+                    <label for="sat">sat:</label>
+                    <input type="range" id="sat" min="0" max="255" value="255">
+                </div>
+                <div>
+                    <label for="bri">bri:</label>
+                    <input type="range" id="bri" min="0" max="255" value="255">
+                </div>
+                <div>
+                    <input type="radio" id="on" name="on" checked>
+                    <label for="on">ON</label>
+                </div>
+                <div>
+                    <input type="radio" id="off" name="on">
+                    <label for="off">OFF</label>
+                </div>
+            </div>
+        </div>
+        <div class="envoyer">
+            <input type="submit"></button>
+        </div>
+    </form>
+</body>

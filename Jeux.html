@@ -1,0 +1,143 @@
+<htmml>
+
+    <head>
+        <link rel="stylesheet" href="jeux.css">
+        <title>jeux</title>
+
+        <script>
+            const calculeNombreOrdinateur = max => {
+                return Math.floor(Math.random() * max)
+            }
+
+            let nombreOrdinateur = calculeNombreOrdinateur(10)
+
+            const facile = () => {
+                nombreOrdinateur = calculeNombreOrdinateur(10)
+                const elementChiffre = document.getElementById("chiffre")
+                elementChiffre.max = 10
+            }
+
+            const moyen = () => {
+                nombreOrdinateur = calculeNombreOrdinateur(50)
+                const elementChiffre = document.getElementById("chiffre")
+                elementChiffre.max = 50
+            }
+
+            const difficile = () => {
+                nombreOrdinateur = calculeNombreOrdinateur(100)
+                const elementChiffre = document.getElementById("chiffre")
+                elementChiffre.max = 100
+            }
+
+
+            const pm = e => {
+
+
+                const chiffre = parseInt(document.getElementById('chiffre').value)
+
+                const plus = document.getElementById("plus")
+                const moins = document.getElementById("moins")
+
+                console.log('nombre choisi par l ordinateur: ', nombreOrdinateur)
+                console.log('nombre choisi par l utilisateur: ', chiffre)
+
+
+                if (nombreOrdinateur > chiffre) {
+                    plus.src = "image/plus vert.png"
+                    moins.src = "image/moins blanc.png"
+
+                }
+
+
+
+                if (nombreOrdinateur < chiffre) {
+                    moins.src = "image/moins rouge.png"
+                    plus.src = "image/plus blanc.png"
+                }
+
+                if (nombreOrdinateur === chiffre) {
+                    const win = document.getElementById("win")
+                    win.classList.add("victoire");
+                    console.log("bien joué")
+                    plus.src = "image/plus blanc.png"
+                    moins.src = "image/moins blanc.png"
+                }
+
+
+
+
+
+
+
+            }
+        </script>
+    </head>
+
+    <body background="image/wallpapertip_ubuntu-dark-wallpaper_543905.jpg">
+
+        <div>
+            <label for="chiffre">chiffre
+                 :</label>
+            <input type="number" id="chiffre" min="0" max="100" value="0">
+        </div>
+        <div class="pm">
+            <div>
+                <img id="plus" alt="plus" src="image/plus blanc.png" width="80px" height="80px" />
+            </div>
+            <div>
+                <img id="moins" alt="moins" src="image/moins blanc.png" width="80px" height="80px" />
+            </div>
+        </div>
+        <div>
+            <input type="button" onclick="pm()" value="Valider">
+        </div>
+        <div id="win">
+            <img alt="plus" src="image/unnamed.png" width="80px" height="80px" />
+        </div>
+        <div>
+            <input type="button" onclick="facile()" value="facile">
+
+        </div>
+        <div>
+            <input type="button" onclick="moyen()" value="moyen">
+        </div>
+        <div>
+            <input type="button" onclick="difficile()" value="difficile">
+
+        </div>
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</htmml>
